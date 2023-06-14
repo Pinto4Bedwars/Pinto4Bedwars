@@ -7,15 +7,49 @@
       background-color: black;
       color: white;
       font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .bean {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      background-image: url('path_to_pinto_bean_image.png');
+      background-size: cover;
+      animation: moveBean 4s infinite linear;
+    }
+
+    @keyframes moveBean {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(calc(100% - 50px));
+      }
+      100% {
+        transform: translateX(0);
+      }
     }
   </style>
 </head>
 <body>
-  <h1>This is The Offical PintoWare Website</h1>
-  <p>Go to my youtube Pinto Exploits to join my discord also please subscribe!</p>
+  <div class="bean"></div>
 
   <script>
-    // JavaScript code can be added here if needed
+    // JavaScript code
+    const bean = document.querySelector('.bean');
+
+    bean.addEventListener('animationiteration', () => {
+      const windowWidth = window.innerWidth;
+      const beanWidth = bean.offsetWidth;
+
+      const maxTranslateX = windowWidth - beanWidth;
+      const randomTranslateX = Math.floor(Math.random() * maxTranslateX);
+
+      bean.style.transform = `translateX(${randomTranslateX}px)`;
+    });
   </script>
 </body>
 </html>
